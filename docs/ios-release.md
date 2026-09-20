@@ -1,25 +1,25 @@
 # iOS release setup
 
-Prepared against the current local source. This is a setup guide, not evidence of a successful Xcode build or an Apple approval.
+Unsigned simulator compilation and native tests passed in Codemagic on 20 September 2026. See [the validation record](validation.md) for the tested commit and build. Signing, physical-device validation and Apple approval remain pending.
 
 ## Repository and Codemagic
 
 Use [airloopal/loop](https://github.com/airloopal/loop), with this directory at its root and branch `main`. The reference project is `airloopal/one-more-floor`; its build conventions were recovered from its local source. Do not put Loop into that app's bundle ID or overwrite its App Store record.
 
-In Codemagic, import or select the GitHub repository **airloopal/loop**, choose branch **main**, use the root `codemagic.yaml`, and select **ios-validate**. Import, build execution and Apple configuration remain separate setup steps. The validation workflow builds the offline bundle, runs structural preflight, generates the Xcode project, compiles an unsigned simulator app and runs the native persistence/navigation tests on an available iPhone simulator. That `.app` runs in Simulator; it cannot be installed on a physical iPhone as an IPA.
+The repository is connected to the [Loop Codemagic app](https://codemagic.io/app/6aafdf04d83de4e2e8943b2e/settings). Select branch **main**, use the root `codemagic.yaml`, and select **ios-validate**. On 20 September 2026, [validation build #2](https://codemagic.io/app/6aafdf04d83de4e2e8943b2e/build/6aafe4947d4532890059b650) passed for commit `288c016dcb721926430b545d5a118fd74ffd26c5`: offline/web checks, preflight, simulator compilation and all six native persistence/navigation tests succeeded. The produced `.app` runs in Simulator; it cannot be installed on a physical iPhone as an IPA.
 
-For **ios-testflight**, replace these values:
+For **ios-testflight**, confirm the configured values and complete the remaining setup:
 
 | Location | Required value |
 |---|---|
 | `app/app-config.json` → `bundleID` | Proposed `com.littlesteps.techhelp`; confirm it is available in your Apple team. |
 | `ios/project.yml` and `codemagic.yaml` | The same bundle identifier. |
-| Codemagic `integrations.app_store_connect` | Exact existing integration name, if it has access to Loop. The reference project's name is `One More Floor`; this package deliberately requires you to select the correct connection. |
+| Codemagic `integrations.app_store_connect` | Configured as `One More Floor`; the existing integration was verified by successfully fetching Apple provisioning profiles through Codemagic. |
 | Codemagic `APP_STORE_APPLE_ID` | Numeric Apple ID of the new Loop App Store Connect record. |
-| Codemagic signing identities | Valid Apple Distribution certificate and a new App Store profile for the Loop bundle ID. |
+| Codemagic signing identities | Existing `one_more_floor_distribution` certificate verified; a matching Loop App Store provisioning profile is still required. |
 | `LS_BUILD_OFFSET` | A value making the next CI build number greater than all previous Loop uploads. |
 
-The previous certificate reference `one_more_floor_distribution` may be reusable if it belongs to the same active Apple team and its private key remains available in Codemagic. Its availability has not been verified. A One More Floor provisioning profile cannot sign Loop; create or fetch the profile for the new bundle ID.
+Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. The fetched Apple profiles did not include a profile for Loop's proposed `com.littlesteps.techhelp` bundle ID. A One More Floor provisioning profile cannot sign Loop; create or fetch a matching App Store profile before attempting the signed workflow. The Loop App Store Connect record and numeric app ID, annual subscription product, operating entity, support contact, and published privacy/terms URLs still require setup.
 
 The signed workflow performs `--distribution` checks, increments the build version, applies profiles, archives, and uploads to App Store Connect. It does not automatically submit to beta review or App Store review. After Apple processes the build, assign internal TestFlight testers in App Store Connect. Do not select that workflow until the first unsigned build and configuration checks have passed.
 
