@@ -99,9 +99,6 @@ def export_screenshots(result: Path, destination: Path, family: str) -> list[dic
         shutil.copyfile(source, destination / filename)
         captures.append({"file": filename, "width": width, "height": height,
                          "screen": match, "sourceAttachment": record["exportedFileName"]})
-    missing = set(EXPECTED) - {capture["screen"] for capture in captures}
-    if missing:
-        raise RuntimeError(f"Missing named screenshots: {sorted(missing)}. Original attachments are retained.")
     return sorted(captures, key=lambda row: row["screen"])
 
 
@@ -121,33 +118,49 @@ def main() -> None:
     configuration = json.loads((ROOT / "app/app-config.json").read_text())
     manifest = {"sourceCommit": commit, "xcode": xcode, "locale": "en_US", "appearance": "light",
                 "statusBarTime": "9:41", "purchasesEnabledForCapture": configuration.get("purchasesEnabled", False),
-                "captureMethod": "Unmodified app UI, XCUITest screen attachments", "devices": []}
+                "captureMethod": "Unmodified app UI, XCUITest screen attachments", "status": "incomplete", "devices": []}
     for device in devices:
         family, udid = device["family"], device["udid"]
         target = OUT / family
         target.mkdir()
-        run("xcrun", "simctl", "boot", udid, check=False)
-        run("xcrun", "simctl", "bootstatus", udid, "-b")
-        run("xcrun", "simctl", "ui", udid, "appearance", "light")
-        run("xcrun", "simctl", "status_bar", udid, "override", "--time", "9:41",
-            "--dataNetwork", "wifi", "--wifiMode", "active", "--wifiBars", "3",
-            "--cellularMode", "active", "--cellularBars", "4", "--batteryState", "charged", "--batteryLevel", "100")
-        # Erases only Loop's state on a disposable CI simulator, so onboarding is real.
-        run("xcrun", "simctl", "uninstall", udid, BUNDLE_ID, check=False)
+        entry = {**device, "screenshots": [], "status": "incomplete", "errors": [], "missingScreens": EXPECTED[:], "testExitCode": None}
+        manifest["devices"].append(entry)
         result = target / "LoopMedia.xcresult"
-        test = run(*base, "-destination", f"platform=iOS Simulator,id={udid}",
-                   "-resultBundlePath", str(result), "-parallel-testing-enabled", "NO",
-                   "-maximum-concurrent-test-simulator-destinations", "1", "CODE_SIGNING_ALLOWED=NO",
-                   "test-without-building", log=target / "capture.log", check=False)
         try:
-            screenshots = export_screenshots(result, target, family)
-            manifest["devices"].append({**device, "screenshots": screenshots})
-            (OUT / "screenshots-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+            run("xcrun", "simctl", "boot", udid, check=False)
+            run("xcrun", "simctl", "bootstatus", udid, "-b")
+            run("xcrun", "simctl", "ui", udid, "appearance", "light")
+            run("xcrun", "simctl", "status_bar", udid, "override", "--time", "9:41",
+                "--dataNetwork", "wifi", "--wifiMode", "active", "--wifiBars", "3",
+                "--cellularMode", "active", "--cellularBars", "4", "--batteryState", "charged", "--batteryLevel", "100")
+            # Erases only Loop's state on a disposable CI simulator, so onboarding is real.
+            run("xcrun", "simctl", "uninstall", udid, BUNDLE_ID, check=False)
+            test = run(*base, "-destination", f"platform=iOS Simulator,id={udid}",
+                       "-resultBundlePath", str(result), "-parallel-testing-enabled", "NO",
+                       "-maximum-concurrent-test-simulator-destinations", "1", "CODE_SIGNING_ALLOWED=NO",
+                       "test-without-building", log=target / "capture.log", check=False)
+            entry["testExitCode"] = test.returncode
+            if test.returncode:
+                entry["errors"].append(f"UI capture test exited with {test.returncode}; inspect capture.log and xcresult.")
+        except Exception as error:
+            entry["errors"].append(str(error))
         finally:
+            # A failed late selector must not discard already captured native frames
+            # or prevent us from trying the second device family.
+            if result.exists():
+                try:
+                    entry["screenshots"] = export_screenshots(result, target, family)
+                except Exception as error:
+                    entry["errors"].append(f"Attachment export: {error}")
+            entry["missingScreens"] = sorted(set(EXPECTED) - {capture["screen"] for capture in entry["screenshots"]})
+            if not entry["missingScreens"] and not entry["errors"] and entry["testExitCode"] == 0:
+                entry["status"] = "complete"
             run("xcrun", "simctl", "status_bar", udid, "clear", check=False)
             run("xcrun", "simctl", "shutdown", udid, check=False)
-        if test.returncode:
-            raise RuntimeError(f"{family} capture tests failed; inspect retained xcresult and log before using media.")
+            (OUT / "screenshots-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    if all(device["status"] == "complete" for device in manifest["devices"]):
+        manifest["status"] = "complete"
+    (OUT / "screenshots-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     # Keep the downloadable media pack small; full xcresults and original exports
     # remain separate Codemagic artifacts for debugging and provenance.
     archive = ROOT / "build/Loop-App-Store-Captures.zip"
@@ -158,6 +171,8 @@ def main() -> None:
                 relative = Path(device["family"]) / screenshot["file"]
                 package.write(OUT / relative, str(relative))
     print("Native screenshots and provenance: build/Loop-App-Store-Captures.zip")
+    if manifest["status"] != "complete":
+        raise SystemExit("Capture incomplete. Both devices were attempted and partial media was packaged; inspect screenshots-manifest.json.")
 
 
 if __name__ == "__main__":
