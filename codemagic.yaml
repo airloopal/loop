@@ -1,0 +1,107 @@
+# Run ios-validate first. ios-testflight is manual and uploads a signed build.
+# Replace the integration and App Store app ID before selecting ios-testflight.
+workflows:
+  ios-validate:
+    name: Loop - unsigned simulator validation
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      xcode: latest
+      node: 22
+    scripts:
+      - name: Prepare the offline app
+        script: |
+          set -eu
+          python3 scripts/build-web.py
+          python3 scripts/release-preflight.py
+          node tests/runtime.cjs
+          node tests/consumer.cjs
+      - name: Generate the native project
+        script: |
+          set -eu
+          command -v xcodegen >/dev/null 2>&1 || brew install xcodegen
+          cd ios
+          xcodegen generate
+      - name: Compile for the iOS simulator
+        script: |
+          set -eu
+          xcodebuild \
+            -project ios/LittleSteps.xcodeproj \
+            -scheme LittleSteps \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/simulator \
+            CODE_SIGNING_ALLOWED=NO build
+      - name: Test persistence and trusted navigation
+        script: |
+          set -eu
+          LS_SIMULATOR_ID=$(xcrun simctl list devices available --json | python3 -c 'import json,sys; data=json.load(sys.stdin); ids=[d["udid"] for runtime,devices in data["devices"].items() if "iOS" in runtime for d in devices if d.get("isAvailable") and d["name"].startswith("iPhone")]; print(ids[0] if ids else "")')
+          test -n "$LS_SIMULATOR_ID" || { echo 'No available iPhone simulator found.'; exit 1; }
+          xcodebuild \
+            -project ios/LittleSteps.xcodeproj \
+            -scheme LittleSteps \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,id=$LS_SIMULATOR_ID" \
+            -derivedDataPath build/simulator \
+            -resultBundlePath build/LittleStepsTests.xcresult \
+            CODE_SIGNING_ALLOWED=NO test
+    artifacts:
+      - build/simulator/Build/Products/Debug-iphonesimulator/*.app
+      - build/LittleStepsTests.xcresult
+      - /tmp/xcodebuild_logs/*.log
+
+  ios-testflight:
+    name: Loop - manual TestFlight upload
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    integrations:
+      app_store_connect: REPLACE_WITH_EXISTING_APP_STORE_CONNECT_INTEGRATION
+    environment:
+      xcode: latest
+      node: 22
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.littlesteps.techhelp
+      vars:
+        APP_STORE_APPLE_ID: REPLACE_WITH_LITTLE_STEPS_APP_ID
+        # Raise this if the resulting number is not above every previous upload.
+        LS_BUILD_OFFSET: "100"
+    scripts:
+      - name: Require completed release configuration
+        script: |
+          set -eu
+          python3 scripts/build-web.py
+          python3 scripts/release-preflight.py --distribution
+          node tests/runtime.cjs
+          node tests/consumer.cjs
+          python3 - <<'PY'
+          import os
+          app_id = os.environ.get('APP_STORE_APPLE_ID', '')
+          if not app_id.isdigit():
+              raise SystemExit('Set APP_STORE_APPLE_ID to the numeric Loop app ID from App Store Connect.')
+          PY
+      - name: Generate native project and set a unique build number
+        script: |
+          set -eu
+          command -v xcodegen >/dev/null 2>&1 || brew install xcodegen
+          cd ios
+          xcodegen generate
+          xcrun agvtool new-version -all "$((BUILD_NUMBER + LS_BUILD_OFFSET))"
+      - name: Apply Loop signing profiles
+        script: xcode-project use-profiles
+      - name: Archive and export the app
+        script: |
+          set -eu
+          xcode-project build-ipa \
+            --project "$CM_BUILD_DIR/ios/LittleSteps.xcodeproj" \
+            --scheme LittleSteps
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        # Same upload-only pattern as One More Floor. Assign internal testers
+        # after Apple processes the build; no automatic beta/App Store review.
+        submit_to_testflight: false
+        submit_to_app_store: false

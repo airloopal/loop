@@ -1,0 +1,107 @@
+[
+  {
+    "path": "fonts/poppins-400-devanagari.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJbecnFHGPezSQ.woff2",
+    "sha256": "23617a1bf667dd6a29e2724ac6595e75924549d1c25e8672e2346ef38bc9984a",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-400-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2",
+    "sha256": "1fae5e73d2788ee1dea1d76eca3a9f157a0386de6be8c280d076a53a64c358a1",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-400-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2",
+    "sha256": "3dc5d0c52428fe1696264907a1054ebbaac07f8cbe45832c105f819c2ae397c0",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-500-devanagari.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z11lFd2JQEl8qw.woff2",
+    "sha256": "9c8c47ee0aeaa2d378f4e5d5719ecbf05a601a35c285d0d48b888106bb15cf49",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-500-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2",
+    "sha256": "f8f0c28661c88edbcee022a4a80657619e8931af8c2a47c28e230307e2af30e5",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-500-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2",
+    "sha256": "289e0afc8be731a86822349e54557296f145926496bd2138db1bac0db77f77a2",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-600-devanagari.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z11lFd2JQEl8qw.woff2",
+    "sha256": "6d8ef422be4d827037f6f2d5766a0808018876fa5e9aa9a92787fad9d1f17938",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-600-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2",
+    "sha256": "72efc6a32cfd37c557108628cffa01153c480c3d4cde556744406e50b9d8e9f7",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/poppins-600-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2",
+    "sha256": "872e862918591a9e824dc03ed92f05729435ffbb8ebbb10eff7eda26592b1798",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-cyrillic-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2",
+    "sha256": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-cyrillic.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2",
+    "sha256": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-greek-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2",
+    "sha256": "a2e2c783ca6f9c20486e81e72a279203e86730bbf8f01ff6a5ee9dbd09e1c271",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-greek.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2",
+    "sha256": "46dd4cdca58c26ae87cc6927657bf83b2e8abfc39ffd0ab176e301a8d28d22bf",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-vietnamese.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2",
+    "sha256": "8db00ff46c67b22cda8bed865acf7077651cac8d2841d5b40980556b48961931",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2",
+    "sha256": "a28eb6d3ccb534ae0c94ca999371df024aab60b08c3c8a5720ee9e32fa0faaa2",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "fonts/inter-100-900-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+    "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+    "license": "OFL-1.1"
+  },
+  {
+    "path": "vendor/lucide.min.js",
+    "source": "https://registry.npmjs.org/lucide/-/lucide-0.468.0.tgz",
+    "version": "0.468.0",
+    "upstreamTarballSHA1": "17575bbb380abe7d4e57e32482600bb0e336bc7c",
+    "sha256": "d0e2c96358addcc6c537c80de85f984dfd64d2f7de5d3c9b5457ba5d860279e8",
+    "license": "ISC",
+    "note": "Optional source map comment removed; runtime otherwise unchanged."
+  }
+]
