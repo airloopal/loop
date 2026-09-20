@@ -9,8 +9,10 @@ Proposed metadata only; this is not a published App Store listing. Complete only
 | Primary category | Utilities |
 | Secondary category | Reference |
 | Keywords | wifi,printer,phone,tv,laptop,computer,bluetooth,setup,router,connection,tips,help,software,streaming |
-| Support URL | https://loop-tech-support.flyopal.chatgpt.site/support/ |
-| Privacy policy URL | https://loop-tech-support.flyopal.chatgpt.site/privacy/ |
+| Support URL | https://looptech.app/support/ |
+| Marketing URL | https://looptech.app/ |
+| Privacy policy URL | https://looptech.app/privacy/ |
+| Terms URL | https://looptech.app/terms/ |
 | Copyright | 2026 OPAL International Ltd |
 
 ## Promotional text
@@ -33,11 +35,11 @@ The current local subscription price and renewal terms appear before purchase. S
 
 Loop is an independent service. Product names and trademarks identify compatible technology and belong to their respective owners; their use does not imply endorsement or affiliation.
 
-Privacy: https://loop-tech-support.flyopal.chatgpt.site/privacy/
-Terms: https://loop-tech-support.flyopal.chatgpt.site/terms/
-Support: https://loop-tech-support.flyopal.chatgpt.site/support/
+Privacy: https://looptech.app/privacy/
+Terms: https://looptech.app/terms/
+Support: https://looptech.app/support/
 
-## Review notes — phone and final domain pending
+## Review notes
 
 No app account or login is required. Basic troubleshooting and saving devices in My Tech are free. Open More options, then Full Access to view the annual subscription and advanced guide coverage. Product ID: com.littlesteps.techhelp.fullaccess.annual.
 
@@ -45,10 +47,11 @@ The interface, illustrations and guides are bundled. My Tech, language preferenc
 
 Full Access uses native StoreKit for purchase, restoration and subscription management. The final price is localized by the App Store. Privacy and Terms are available in the app and on the support website.
 
-Review contact: Daniel Vernon, request@flyopal.com. Phone: pending from the user.
+Review contact: Daniel Vernon, request@flyopal.com, +442034323492.
 Uploaded candidate: 1.0.0 (102), 20 September 2026. Native local StoreKit tests passed; physical-device/TestFlight Sandbox results are not yet established.
-Marketing URL: https://loop-tech-support.flyopal.chatgpt.site/
-Final domain: pending from the user. Replace all listing URLs after that domain and the support/privacy/terms pages are verified live.
+Marketing URL: https://looptech.app/
+
+Internal release note: the final domain and review telephone above were supplied by the user. The App Store version description, support and marketing URLs are saved with the final domain, and the review contact including telephone is saved. Build 102 still bundles https://loop-tech-support.flyopal.chatgpt.site/privacy/ and https://loop-tech-support.flyopal.chatgpt.site/terms/. The source configuration now targets looptech.app, so a new signed build is needed to change the in-app links. Both new legal pages returned HTTPS 200 with the expected Loop/OPAL content, and unchanged distribution preflight passed on 20 September 2026. The user reports business verification is pending; current account status has not been independently reconfirmed.
 
 ## Internal coverage baseline
 
