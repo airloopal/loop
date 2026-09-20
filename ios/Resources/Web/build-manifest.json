@@ -1,0 +1,32 @@
+{
+  "formatVersion": 1,
+  "offlineBundle": true,
+  "files": {
+    "app.css": "9fca5815ac46599c6501455e654613066b95c0ca80946fd3947c042c76c86dbd",
+    "app.js": "d5e928cc48445a6931a310710b4f997f06ff870ac298d9928d5d1994b17035be",
+    "assets/app-icon.svg": "38be03d62e4472d56a03a96523a6ec9c24dd99a0dc44530b58648d7a83d6cde9",
+    "assets/fonts/inter-100-900-cyrillic-ext.woff2": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
+    "assets/fonts/inter-100-900-cyrillic.woff2": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
+    "assets/fonts/inter-100-900-greek-ext.woff2": "a2e2c783ca6f9c20486e81e72a279203e86730bbf8f01ff6a5ee9dbd09e1c271",
+    "assets/fonts/inter-100-900-greek.woff2": "46dd4cdca58c26ae87cc6927657bf83b2e8abfc39ffd0ab176e301a8d28d22bf",
+    "assets/fonts/inter-100-900-latin-ext.woff2": "a28eb6d3ccb534ae0c94ca999371df024aab60b08c3c8a5720ee9e32fa0faaa2",
+    "assets/fonts/inter-100-900-latin.woff2": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+    "assets/fonts/inter-100-900-vietnamese.woff2": "8db00ff46c67b22cda8bed865acf7077651cac8d2841d5b40980556b48961931",
+    "assets/fonts/poppins-400-devanagari.woff2": "23617a1bf667dd6a29e2724ac6595e75924549d1c25e8672e2346ef38bc9984a",
+    "assets/fonts/poppins-400-latin-ext.woff2": "1fae5e73d2788ee1dea1d76eca3a9f157a0386de6be8c280d076a53a64c358a1",
+    "assets/fonts/poppins-400-latin.woff2": "3dc5d0c52428fe1696264907a1054ebbaac07f8cbe45832c105f819c2ae397c0",
+    "assets/fonts/poppins-500-devanagari.woff2": "9c8c47ee0aeaa2d378f4e5d5719ecbf05a601a35c285d0d48b888106bb15cf49",
+    "assets/fonts/poppins-500-latin-ext.woff2": "f8f0c28661c88edbcee022a4a80657619e8931af8c2a47c28e230307e2af30e5",
+    "assets/fonts/poppins-500-latin.woff2": "289e0afc8be731a86822349e54557296f145926496bd2138db1bac0db77f77a2",
+    "assets/fonts/poppins-600-devanagari.woff2": "6d8ef422be4d827037f6f2d5766a0808018876fa5e9aa9a92787fad9d1f17938",
+    "assets/fonts/poppins-600-latin-ext.woff2": "72efc6a32cfd37c557108628cffa01153c480c3d4cde556744406e50b9d8e9f7",
+    "assets/fonts/poppins-600-latin.woff2": "872e862918591a9e824dc03ed92f05729435ffbb8ebbb10eff7eda26592b1798",
+    "config.js": "04556cf88e7a26ecc7897deb7919bccf73c9feeadc7cfc0f282dbfc7d8db65df",
+    "index.html": "31b70705cd92dd0173dba66c37415506e0b22a19ff3aac3b6a2e068d9dad8e0d",
+    "licenses/ATTRIBUTION.md": "80d807f9a5f06f77756576189dfd690f7bc8ed55e879047fd63594401ae1c762",
+    "licenses/Inter-OFL.txt": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
+    "licenses/Lucide-LICENSE.txt": "1e7290b35280a048667bbf0ebabac1c7fd52a75300e8b2946ac165715997f2bc",
+    "licenses/Poppins-OFL.txt": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
+    "vendor/lucide.min.js": "d0e2c96358addcc6c537c80de85f984dfd64d2f7de5d3c9b5457ba5d860279e8"
+  }
+}

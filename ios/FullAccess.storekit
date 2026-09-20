@@ -1,0 +1,42 @@
+{
+  "identifier": "E829E921-DCD5-4D02-9DDE-8EAC01F599FE",
+  "nonRenewingSubscriptions": [],
+  "products": [],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA"
+  },
+  "subscriptionGroups": [
+    {
+      "id": "291E97DC-610F-4D64-85EA-A65418B9E0B3",
+      "localizations": [],
+      "name": "Full Access",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "49.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "4EC44F85-B354-4029-BA04-1B13C449D7A3",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Advanced guides for supported devices and apps.",
+              "displayName": "Full Access Annual",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.littlesteps.techhelp.fullaccess.annual",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Full Access Annual",
+          "subscriptionGroupID": "291E97DC-610F-4D64-85EA-A65418B9E0B3",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {"major": 3, "minor": 0}
+}

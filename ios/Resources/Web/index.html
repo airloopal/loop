@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; data:; font-src &#x27;self&#x27;; connect-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; frame-src &#x27;none&#x27;; media-src &#x27;none&#x27;; worker-src &#x27;none&#x27;">
+  <title>Loop Tech Support | Simple Device Troubleshooting</title>
+  <meta name="description" content="Get help with everyday tech. Loop guides you through simple checks for phones, TVs, computers, printers and apps. Save your devices in My Tech.">
+  <meta name="application-name" content="Loop">
+  <meta name="apple-mobile-web-app-title" content="Loop">
+  <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="app.css">
+  <script src="config.js" defer></script>
+  <script src="vendor/lucide.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div id="little-steps-consumer" class="ls-consumer-app">
+  <section class="th-phone" aria-label="Loop">
+    <header class="th-top"><div class="ls-brand-lockup"><span class="ls-mark" aria-hidden="true"></span><span class="th-brand">Loop</span></div><div class="ls-header-actions"><button type="button" class="ls-quick-tech cursor-interaction">My Tech</button><button type="button" class="ls-about-button cursor-interaction" aria-label="More options" aria-expanded="false" aria-controls="ls-about-reference"><i data-lucide="ellipsis" aria-hidden="true"></i></button></div></header>
+    <p class="ls-tagline">Tech help, one step at a time.</p>
+    <p class="ls-consumer-notice" role="status" hidden></p>
+    <div class="ls-membership"><button type="button" class="ls-plan-button cursor-interaction" hidden>Full Access · $49.99/year</button><button type="button" class="ls-end-preview cursor-interaction" hidden>Full Access</button></div>
+    <section id="ls-about-reference" class="ls-about-panel" aria-label="More options" hidden>
+      <div class="ls-about-heading"><h3>More options</h3><button type="button" class="ls-about-close cursor-interaction" aria-label="Close more options"><i data-lucide="x" aria-hidden="true"></i></button></div>
+      <div class="ls-about-help"><h4>How Loop works</h4><ol><li>Choose your device or describe the problem.</li><li>Tap the answer that matches what you see.</li><li>Try a small check, then tell us what happened.</li></ol></div>
+      <button type="button" class="ls-premium-menu cursor-interaction">Explore Full Access</button>
+      <button type="button" class="ls-settings-menu cursor-interaction">Settings &amp; support</button>
+      <button type="button" class="th-restart cursor-interaction" aria-controls="ls-restart-confirm" aria-expanded="false" hidden>Start again</button>
+      <div id="ls-restart-confirm" class="ls-restart-confirm" aria-labelledby="ls-restart-title" hidden>
+        <h4 id="ls-restart-title">Start a new search?</h4>
+        <p>This clears this troubleshooting journey. Your saved devices stay in My Tech.</p>
+        <div class="ls-restart-actions"><button type="button" class="ls-restart-keep cursor-interaction">Keep troubleshooting</button><button type="button" class="ls-restart-proceed cursor-interaction">Start again</button></div>
+      </div>
+    </section>
+    <button type="button" class="th-back cursor-interaction" disabled aria-label="Go back one step">← Back</button>
+    <main aria-live="polite" aria-atomic="true">
+      <p class="th-context">One small step at a time</p>
+      <div class="th-question"><h2>What needs a little help?</h2></div>
+      <p class="th-detail">Pick a bubble. We'll take it from there.</p>
+      <div class="ls-upcoming-art" hidden></div>
+      <div class="ls-brand-context" hidden></div>
+      <p class="th-case" hidden></p>
+      <button type="button" class="ls-save-device cursor-interaction" hidden><i data-lucide="plus" aria-hidden="true"></i><span>Save to My Tech</span></button>
+      <section class="ls-plan-panel" hidden aria-label="Full Access subscription">
+        <p class="ls-plan-eyebrow">LOOP · FULL ACCESS</p>
+        <p class="ls-plan-price">$49.99<span> / year · USD</span></p>
+        <p class="ls-plan-value">Calm, clear guidance for the moments that need a closer look.</p>
+        <ul><li>Every available advanced guide</li><li>A clear next step, with progress you can follow</li><li>Your checks gathered into a support summary</li></ul>
+        <p class="ls-plan-renewal">US plan: $49.99 per year. Renews yearly until cancelled with Apple. Basic checks stay free.</p>
+        <p class="ls-plan-demo">The App Store confirms your local price before purchase.</p>
+        <div class="ls-plan-legal"><button type="button" class="ls-plan-privacy cursor-interaction">Privacy policy</button><button type="button" class="ls-plan-terms cursor-interaction">Terms of use</button></div>
+      </section>
+      <section class="ls-member-panel" hidden aria-label="Full Access"><p class="ls-member-eyebrow">FULL ACCESS</p><h3>Your help, one step further.</h3><div class="ls-member-stats"><p><strong class="ls-member-count">12</strong>available guides</p><p><strong class="ls-member-completed">0</strong>guides completed</p></div><p class="ls-member-note">Your guide progress is saved on this device.</p></section>
+      <div class="ls-advanced-progress" hidden><p class="ls-advanced-progress-label"></p><div class="ls-advanced-track" role="progressbar" aria-label="Guide progress" aria-valuemin="0" aria-valuemax="100"><span></span></div></div>
+      <section class="ls-guide-summary" hidden aria-label="Your support summary"></section>
+      <button type="button" class="ls-share-summary cursor-interaction" hidden><i data-lucide="share" aria-hidden="true"></i>Share support summary</button>
+
+      <p class="ls-guide-scope" hidden></p>
+      <p class="ls-guide-check" hidden></p>
+      <form class="ls-custom-form" hidden aria-label="Enter your model or software name">
+        <label for="ls-custom-value">Name on your device or software</label>
+        <div class="th-search-row"><input id="ls-custom-value" type="text" maxlength="90" autocomplete="off" placeholder="e.g. Model name from the label"><button type="submit" class="th-search-submit cursor-interaction">Use name</button></div>
+        <p class="ls-custom-feedback" role="status"></p>
+      </form>
+      <div class="th-options" aria-label="Choose an answer"></div>
+      <form class="th-search" aria-label="Describe your technology problem">
+        <label for="little-steps-description">Or tell us in your own words</label>
+        <div class="th-search-row"><input id="little-steps-description" type="text" autocomplete="off" maxlength="240" placeholder="My TV has no sound" aria-describedby="little-steps-match-status"><button type="submit" class="th-search-submit cursor-interaction">Start</button></div>
+        <p class="th-match-status" id="little-steps-match-status" role="status">Type a device, app or what went wrong.</p>
+        <div class="th-suggestions" aria-label="Suggested starting points"></div>
+      </form>
+      <button type="button" class="th-unknown cursor-interaction">I'm not sure</button>
+      <div class="ls-step-links" hidden></div>
+      <a class="th-link" target="_blank" rel="noopener noreferrer" hidden></a>
+    </main>
+    <section class="ls-my-tech" aria-live="polite" aria-atomic="true" hidden>
+      <p class="ls-my-tech-eyebrow">My Tech</p>
+      <h2 class="ls-my-tech-title">Your devices.<br>One tap away.</h2>
+      <p class="ls-my-tech-description">Add your devices for a quicker route to help.</p>
+      <button type="button" class="ls-add-device cursor-interaction"><i data-lucide="plus" aria-hidden="true"></i><span>Add device</span></button>
+      <div class="ls-saved-list"></div>
+      <p class="ls-save-note">Saved on this device.</p>
+      <section class="ls-device-wizard" aria-label="Add a device to My Tech" hidden>
+        <div class="ls-wizard-navigation"><button type="button" class="ls-wizard-back cursor-interaction">← Back</button><button type="button" class="ls-wizard-cancel cursor-interaction">Cancel</button></div>
+        <p class="ls-wizard-step"></p>
+        <h3 class="ls-wizard-title"></h3>
+        <p class="ls-wizard-description"></p>
+        <div class="ls-wizard-options th-options"></div>
+        <form class="ls-wizard-custom" hidden>
+          <label for="ls-device-name">Name on your device</label>
+          <input id="ls-device-name" type="text" maxlength="90" autocomplete="off">
+          <p class="ls-wizard-feedback" role="status"></p>
+          <button type="submit" class="ls-wizard-primary cursor-interaction">Continue</button>
+        </form>
+        <form class="ls-wizard-review" hidden>
+          <div class="ls-device-summary"></div>
+          <label for="ls-device-nickname">Device nickname <span>(optional)</span></label>
+          <input id="ls-device-nickname" type="text" maxlength="50" autocomplete="off" placeholder="e.g. Living room TV">
+          <p>Saved on this device.</p>
+          <button type="submit" class="ls-wizard-primary cursor-interaction">Save device</button>
+        </form>
+      </section>
+    </section>
+    <footer class="th-footer"><span class="th-step">One small step at a time</span><span class="th-demo">1.0.0</span></footer>
+    <nav class="ls-bottom-nav" aria-label="Main navigation"><button type="button" class="ls-nav-help cursor-interaction" aria-current="page"><i data-lucide="home" aria-hidden="true"></i><span>Get help</span></button><button type="button" class="ls-nav-tech cursor-interaction"><i data-lucide="smartphone" aria-hidden="true"></i><span>My Tech</span></button></nav>
+  </section>
+</div>
+<noscript>Loop needs JavaScript enabled to show its troubleshooting guides.</noscript>
+</body>
+</html>
