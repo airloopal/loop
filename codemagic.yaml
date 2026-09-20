@@ -117,6 +117,8 @@ workflows:
           cd ios
           xcodegen generate
           xcrun agvtool new-version -all "$((BUILD_NUMBER + LS_BUILD_OFFSET))"
+      - name: Validate native annual purchase and entitlement changes
+        script: bash scripts/run-storekit-tests.sh
       - name: Apply Loop signing profiles
         script: xcode-project use-profiles
       - name: Archive and export the app
@@ -127,6 +129,7 @@ workflows:
             --scheme LittleSteps
     artifacts:
       - build/ios/ipa/*.ipa
+      - build/LoopStoreKitTests.xcresult
       - /tmp/xcodebuild_logs/*.log
     publishing:
       app_store_connect:
