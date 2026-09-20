@@ -4,7 +4,7 @@
   "files": {
     "app.css": "9fca5815ac46599c6501455e654613066b95c0ca80946fd3947c042c76c86dbd",
     "app.js": "d5e928cc48445a6931a310710b4f997f06ff870ac298d9928d5d1994b17035be",
-    "assets/app-icon.svg": "38be03d62e4472d56a03a96523a6ec9c24dd99a0dc44530b58648d7a83d6cde9",
+    "assets/app-icon.svg": "d5304735310eb16bfd5300edf3eb65333b2eb75b52e295d7d4508ebb0a453a66",
     "assets/fonts/inter-100-900-cyrillic-ext.woff2": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
     "assets/fonts/inter-100-900-cyrillic.woff2": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
     "assets/fonts/inter-100-900-greek-ext.woff2": "a2e2c783ca6f9c20486e81e72a279203e86730bbf8f01ff6a5ee9dbd09e1c271",
@@ -21,7 +21,7 @@
     "assets/fonts/poppins-600-devanagari.woff2": "6d8ef422be4d827037f6f2d5766a0808018876fa5e9aa9a92787fad9d1f17938",
     "assets/fonts/poppins-600-latin-ext.woff2": "72efc6a32cfd37c557108628cffa01153c480c3d4cde556744406e50b9d8e9f7",
     "assets/fonts/poppins-600-latin.woff2": "872e862918591a9e824dc03ed92f05729435ffbb8ebbb10eff7eda26592b1798",
-    "config.js": "04556cf88e7a26ecc7897deb7919bccf73c9feeadc7cfc0f282dbfc7d8db65df",
+    "config.js": "1af6da3586b1092e4aa2a47a8f738c17e9bde05233c93678cf4ba1aa8ed417c0",
     "index.html": "31b70705cd92dd0173dba66c37415506e0b22a19ff3aac3b6a2e068d9dad8e0d",
     "licenses/ATTRIBUTION.md": "80d807f9a5f06f77756576189dfd690f7bc8ed55e879047fd63594401ae1c762",
     "licenses/Inter-OFL.txt": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
