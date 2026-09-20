@@ -98,7 +98,31 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.littlesteps.techhelp.media-tests
         GENERATE_INFOPLIST_FILE: YES
         TEST_TARGET_NAME: LittleSteps
+  LoopStoreKitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: StoreKitTests
+      - path: FullAccess.storekit
+        buildPhase: resources
+    dependencies:
+      - target: LittleSteps
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.littlesteps.techhelp.storekit-tests
+        GENERATE_INFOPLIST_FILE: YES
 schemes:
+  Loop-StoreKitValidation:
+    build:
+      targets:
+        LittleSteps: [test]
+        LoopStoreKitTests: [test]
+    test:
+      config: Debug
+      targets:
+        - name: LoopStoreKitTests
+          parallelizable: false
+      gatherCoverageData: false
   Loop-MediaCapture:
     build:
       targets:
