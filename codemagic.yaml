@@ -87,7 +87,9 @@ workflows:
     integrations:
       app_store_connect: One More Floor
     environment:
-      xcode: latest
+      # The default image currently uses iOS 26.5, whose StoreKitTest service
+      # fails to load local configurations. Keep release validation reproducible.
+      xcode: "26.2"
       node: 22
       ios_signing:
         distribution_type: app_store
