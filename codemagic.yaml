@@ -1,6 +1,36 @@
 # Run ios-validate first. ios-testflight is manual and uploads a signed build.
 # Complete signing and consumer release setup before ios-testflight.
 workflows:
+  ios-media:
+    name: Loop - manual App Store screenshot capture
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      xcode: latest
+      node: 22
+    scripts:
+      - name: Prepare the real offline app
+        script: |
+          set -eu
+          python3 scripts/build-web.py
+          python3 scripts/release-preflight.py
+      - name: Generate the isolated screenshot test target
+        script: |
+          set -eu
+          command -v xcodegen >/dev/null 2>&1 || brew install xcodegen
+          cd ios
+          xcodegen generate
+      - name: Capture iPhone and iPad screenshots
+        script: |
+          set -eu
+          python3 scripts/capture-app-media.py
+    artifacts:
+      - build/media/**/*.png
+      - build/media/**/*.json
+      - build/media/**/*.log
+      - build/media/**/*.xcresult
+      - build/Loop-App-Store-Captures.zip
+
   ios-validate:
     name: Loop - unsigned simulator validation
     instance_type: mac_mini_m2
