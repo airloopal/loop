@@ -1,6 +1,6 @@
 # iOS release setup
 
-Unsigned simulator compilation and native tests passed in Codemagic on 20 September 2026. See [the validation record](validation.md) for the tested commit and build. The approved icon and published support/legal settings are installed in signed build 102, successfully uploaded to App Store Connect. Physical-device validation, final review information and Apple approval remain pending.
+Unsigned simulator compilation and native tests passed in Codemagic on 20 September 2026. See [the validation record](validation.md) for the tested commit and build. The approved icon and published support/legal settings are installed in signed build 102, successfully uploaded to App Store Connect. Source configuration now targets the final domain, looptech.app; build 102 retains the previous hosted legal URLs. Physical-device validation, business verification, remaining review requirements and Apple approval remain pending.
 
 ## Repository and Codemagic
 
@@ -21,7 +21,7 @@ For **ios-testflight**, confirm the configured values and complete the remaining
 
 The [Loop: Tech Support App Store Connect record](https://appstoreconnect.apple.com/apps/6814186180/distribution) is created with primary language **English (U.S.)**, SKU `loop-tech-support-ios`, and bundle ID `com.littlesteps.techhelp`. Access is limited to the owner, Dan Vernon, with the existing Admin role.
 
-Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. Apple generated the **Loop App Store** provisioning profile for `A35TN6NA76.com.littlesteps.techhelp`, also expiring **19 September 2027**. It is imported into Codemagic as `loop_app_store`, where the matching uploaded certificate is confirmed. Signed build 102 has now passed archive and upload, as recorded below. The operator is OPAL International Ltd and the published support/legal URLs are configured. The user is supplying the review phone number and final domain.
+Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. Apple generated the **Loop App Store** provisioning profile for `A35TN6NA76.com.littlesteps.techhelp`, also expiring **19 September 2027**. It is imported into Codemagic as `loop_app_store`, where the matching uploaded certificate is confirmed. Signed build 102 has now passed archive and upload, as recorded below. The operator is OPAL International Ltd. The user supplied the final domain `looptech.app` and review telephone `+442034323492`; the review contact remains Daniel Vernon, request@flyopal.com.
 
 The signed workflow performs `--distribution` checks, increments the build version, applies profiles, archives, and uploads to App Store Connect. It does not automatically submit to beta review or App Store review. After Apple processes the build, assign internal TestFlight testers in App Store Connect. Do not select that workflow until the first unsigned build and configuration checks have passed.
 
@@ -68,18 +68,26 @@ The source uses an app interface with bundled content and native purchase/share 
 
 ## Signed candidate preparation — 20 September 2026
 
-The app now uses the approved 1024 × 1024 opaque Loop icon, OPAL International Ltd as operator, request@flyopal.com for support, and the published privacy/terms pages at https://loop-tech-support.flyopal.chatgpt.site. Purchases are enabled for the configured annual product. Distribution preflight and all existing JavaScript runtime/consumer checks pass.
+Build 102 uses the approved 1024 × 1024 opaque Loop icon, OPAL International Ltd as operator, request@flyopal.com for support, and the published privacy/terms pages at https://loop-tech-support.flyopal.chatgpt.site. Purchases are enabled for the configured annual product. Distribution preflight and all existing JavaScript runtime/consumer checks passed for that candidate and its hosted legal URLs.
 
 The signed workflow now runs the isolated Loop-StoreKitValidation scheme before archive. It exercises native StoreKit product loading, purchase, entitlement restoration through a new store instance, refund and expiration using Apple’s local test environment. This does not establish physical-device or TestFlight Sandbox purchase results. [Signed build #2](https://codemagic.io/app/6aafdf04d83de4e2e8943b2e/build/6ab029e6336d80bcce93430f) completed successfully for commit `64e4505d386d9c09e00461f2574acedf4b5430b5`, producing version **1.0.0 (102)**. All three native StoreKit tests passed with zero failures. Apple returned **UPLOAD SUCCEEDED with no errors** at 18:50 UTC. Delivery UUID: `06be58c6-fe0a-449c-a44e-a17483705e00`. App Store Connect subsequently completed processing, marked build 102 Ready to Submit, and the build was selected and saved on iOS version 1.0. The uploaded Loop icon was visually verified in Apple’s Included Assets viewer.
 
 The release workflow pins Xcode 26.2 because the previous default iOS 26.5 simulator failed to configure StoreKitTest (SKInternalErrorDomain Code 3). The same tests passed on iOS 26.2 without changing purchase code. See [Apple's discussion](https://developer.apple.com/forums/thread/826364) and [Codemagic's installed runtimes](https://docs.codemagic.io/specs-macos/xcode-26-2/).
 
+### Final domain preparation — 20 September 2026
+
+The source configuration now sets `privacyURL` to https://looptech.app/privacy/ and `termsURL` to https://looptech.app/terms/. The App Store version description, support URL https://looptech.app/support/ and marketing URL https://looptech.app/ are saved with the final domain. The review contact, including telephone, is saved as Daniel Vernon, request@flyopal.com, +442034323492. The user reports business verification is pending; its current account status has not been independently reconfirmed.
+
+Website version 4 is published. Both looptech.app and www.looptech.app have active SSL, and the root, www, support, privacy, terms and sitemap URLs returned HTTPS 200.
+
+The generated web and native bundles must travel in a new signed build to update the in-app legal links; this source change does not alter uploaded build 102. Both new legal pages returned HTTPS 200 with the expected Loop/OPAL content using the release-preflight request configuration. The offline build, unsigned preflight, unchanged distribution preflight, runtime checks and all 11 consumer checks passed for the final-domain source configuration. No new native build or StoreKit run is implied: the successful native StoreKit test results above remain attached to build 102.
+
 ### Review preparation status
 
 - Saved: free download price, availability in all 175 selectable regions, age rating 4+, and five correctly sized screenshots each for iPhone and iPad, ordered 01–05.
 - Saved: Full Access annual subscription pricing, localization, review screenshot and review notes. The subscription is added to the draft review submission (Ready for Review).
-- Saved and verified on a fresh version page: description, keywords, support/marketing URLs and copyright. Reviewer name/email and detailed review notes are prepared in the form; Apple blocks saving that review-contact section until the missing phone number is provided. The final domain is also pending from the user.
+- Saved: description, support URL and marketing URL updated to the final domain, looptech.app; the review contact includes the supplied telephone +442034323492. Keywords and copyright remain saved.
 - Draft saved, not published: Data Not Collected privacy answers. Publishing requires the owner to confirm Apple's accuracy/compliance declaration.
 - Pending owner confirmation: rights or legally permitted use for third-party brand assets/content.
-- Apple Business blockers: Paid Apps Agreement is Pending User Info, with bank and US tax information missing; EU Digital Services Act trader information is incomplete. The owner must complete those account details.
-- Not submitted for App Review. Apple’s Add for Review validation specifically requires published App Privacy answers, Content Rights Information and a complete review contact. Build 102 is attached and the first subscription is in the draft review submission. Add the app version to that same submission after completing the remaining requirements.
+- User-reported status: business verification is pending. The current Paid Apps Agreement, banking, tax and EU trader statuses have not been independently reconfirmed; the earlier missing-information observations are not treated as current blockers.
+- Not submitted for App Review. Published App Privacy answers and Content Rights Information remain required; the review contact is now saved. Build 102 is attached and the first subscription is in the draft review submission. Add the app version to that same submission after completing the remaining requirements.
