@@ -1,5 +1,5 @@
 # Run ios-validate first. ios-testflight is manual and uploads a signed build.
-# Replace the integration and App Store app ID before selecting ios-testflight.
+# Set the App Store app ID and complete signing/release setup before ios-testflight.
 workflows:
   ios-validate:
     name: Loop - unsigned simulator validation
@@ -55,7 +55,7 @@ workflows:
     instance_type: mac_mini_m2
     max_build_duration: 45
     integrations:
-      app_store_connect: REPLACE_WITH_EXISTING_APP_STORE_CONNECT_INTEGRATION
+      app_store_connect: One More Floor
     environment:
       xcode: latest
       node: 22
