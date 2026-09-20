@@ -155,8 +155,9 @@ struct AppWebView: UIViewRepresentable {
             // Pass JSON as an argument, never interpolate strings into source.
             webView.callAsyncJavaScript(
                 "window.dispatchEvent(new CustomEvent('littleStepsSubscriptionChanged', {detail: subscription}));",
-                arguments: ["subscription": snapshot.dictionary], in: nil, contentWorld: .page
-            ) { _ in }
+                arguments: ["subscription": snapshot.dictionary], in: nil, in: .page,
+                completionHandler: { _ in }
+            )
         }
 
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
