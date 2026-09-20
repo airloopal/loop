@@ -1,5 +1,5 @@
 # Run ios-validate first. ios-testflight is manual and uploads a signed build.
-# Set the App Store app ID and complete signing/release setup before ios-testflight.
+# Complete signing and consumer release setup before ios-testflight.
 workflows:
   ios-validate:
     name: Loop - unsigned simulator validation
@@ -63,7 +63,7 @@ workflows:
         distribution_type: app_store
         bundle_identifier: com.littlesteps.techhelp
       vars:
-        APP_STORE_APPLE_ID: REPLACE_WITH_LITTLE_STEPS_APP_ID
+        APP_STORE_APPLE_ID: "6814186180"
         # Raise this if the resulting number is not above every previous upload.
         LS_BUILD_OFFSET: "100"
     scripts:
