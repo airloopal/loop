@@ -48,10 +48,12 @@ The interface, illustrations and guides are bundled. My Tech, language preferenc
 Full Access uses native StoreKit for purchase, restoration and subscription management. The final price is localized by the App Store. Privacy and Terms are available in the app and on the support website.
 
 Review contact: Daniel Vernon, request@flyopal.com, +442034323492.
-Uploaded candidate: 1.0.0 (102), 20 September 2026. Native local StoreKit tests passed; physical-device/TestFlight Sandbox results are not yet established.
+Uploaded candidate: 1.0.0 (103), 20 September 2026. Apple completed processing and marked the build Ready to Submit. Build 103 is selected and saved on iOS version 1.0; it has not been submitted for App Review. All three native local StoreKit tests passed with zero failures; physical-device/TestFlight Sandbox results are not yet established.
 Marketing URL: https://looptech.app/
 
-Internal release note: the final domain and review telephone above were supplied by the user. The App Store version description, support and marketing URLs are saved with the final domain, and the review contact including telephone is saved. Build 102 still bundles https://loop-tech-support.flyopal.chatgpt.site/privacy/ and https://loop-tech-support.flyopal.chatgpt.site/terms/. The source configuration now targets looptech.app, so a new signed build is needed to change the in-app links. Both new legal pages returned HTTPS 200 with the expected Loop/OPAL content, and unchanged distribution preflight passed on 20 September 2026. The user reports business verification is pending; current account status has not been independently reconfirmed.
+Internal release note: the final domain and review telephone above were supplied by the user. The App Store version description, support and marketing URLs are saved with the final domain; the Privacy Policy URL was saved and verified on a fresh App Store Connect page, and the review contact including telephone is saved. Build 103 now bundles https://looptech.app/privacy/ and https://looptech.app/terms/. Both legal pages returned HTTPS 200 with the expected Loop/OPAL content, and unchanged distribution preflight passed on 20 September 2026. Build 103 has replaced build 102 as the selected, saved build on iOS version 1.0. App Privacy answers are still a draft and content-rights confirmation remains pending.
+
+Current Apple Business status, verified on a fresh page: business information is being verified, the bank-account banner asks to add a bank account, and the Paid Apps Agreement is Pending User Info. Both US tax forms and Digital Services Act information are Active.
 
 ## Internal coverage baseline
 
