@@ -86,7 +86,30 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.littlesteps.techhelp.tests
         GENERATE_INFOPLIST_FILE: YES
+  LoopMediaCaptureUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: MediaCaptureUITests
+    dependencies:
+      - target: LittleSteps
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.littlesteps.techhelp.media-tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: LittleSteps
 schemes:
+  Loop-MediaCapture:
+    build:
+      targets:
+        LittleSteps: all
+        LoopMediaCaptureUITests: [test]
+    test:
+      config: Debug
+      targets:
+        - name: LoopMediaCaptureUITests
+          parallelizable: false
+      gatherCoverageData: false
   LittleSteps:
     build:
       targets:
