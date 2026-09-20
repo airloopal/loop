@@ -1,1 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><rect width="1024" height="1024" fill="#172020"/><g transform="translate(112 112) scale(21.6216216216)"><circle cx="18.5" cy="18.5" r="18.5" fill="#d4ff64"/><rect x="10" y="16" width="8" height="15" rx="5" fill="#202b0d" transform="rotate(24 14 23.5)"/><rect x="21" y="7" width="8" height="15" rx="5" fill="#202b0d" transform="rotate(24 25 14.5)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Loop — refined app icon</title>
+  <desc id="desc">The original lime circle and paired diagonal capsule mark, with a restrained satin finish on a charcoal field. Core logo geometry is unchanged.</desc>
+  <defs>
+    <radialGradient id="charcoal" cx="25%" cy="8%" r="110%">
+      <stop offset="0" stop-color="#293630"/>
+      <stop offset="0.55" stop-color="#192422"/>
+      <stop offset="1" stop-color="#111b1a"/>
+    </radialGradient>
+    <linearGradient id="lime" x1="15%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0" stop-color="#e3ff9b"/>
+      <stop offset="0.38" stop-color="#d4ff64"/>
+      <stop offset="0.72" stop-color="#c9f75a"/>
+      <stop offset="1" stop-color="#b6e747"/>
+    </linearGradient>
+    <linearGradient id="capsule" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0" stop-color="#14210d"/>
+      <stop offset="0.55" stop-color="#1b290e"/>
+      <stop offset="1" stop-color="#2d3d12"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0%" y1="0%" x2="75%" y2="100%">
+      <stop offset="0" stop-color="#f3ffcb" stop-opacity="0.72"/>
+      <stop offset="0.5" stop-color="#eeffc0" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#a4d341" stop-opacity="0.26"/>
+    </linearGradient>
+    <clipPath id="disc-clip"><circle cx="18.5" cy="18.5" r="18.5"/></clipPath>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#charcoal)"/>
+  <!-- Original editable logo coordinates and transform are preserved exactly. -->
+  <g transform="translate(112 112) scale(21.6216216216)">
+    <circle cx="18.5" cy="18.5" r="18.5" fill="url(#lime)"/>
+    <circle cx="18.5" cy="18.5" r="18.5" fill="none" stroke="url(#rim)" stroke-width="0.12" clip-path="url(#disc-clip)"/>
+    <rect x="10" y="16" width="8" height="15" rx="5" fill="url(#capsule)" transform="rotate(24 14 23.5)"/>
+    <rect x="21" y="7" width="8" height="15" rx="5" fill="url(#capsule)" transform="rotate(24 25 14.5)"/>
+  </g>
+</svg>
