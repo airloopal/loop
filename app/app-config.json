@@ -4,9 +4,9 @@
   "build": "1",
   "bundleID": "com.littlesteps.techhelp",
   "productID": "com.littlesteps.techhelp.fullaccess.annual",
-  "purchasesEnabled": false,
-  "supportEmail": "",
-  "privacyURL": "",
-  "termsURL": "",
-  "operatorName": ""
+  "purchasesEnabled": true,
+  "supportEmail": "request@flyopal.com",
+  "privacyURL": "https://loop-tech-support.flyopal.chatgpt.site/privacy/",
+  "termsURL": "https://loop-tech-support.flyopal.chatgpt.site/terms/",
+  "operatorName": "OPAL International Ltd"
 }
