@@ -9,9 +9,9 @@ Proposed metadata only; this is not a published App Store listing. Complete only
 | Primary category | Utilities |
 | Secondary category | Reference |
 | Keywords | wifi,printer,phone,tv,laptop,computer,bluetooth,setup,router,connection,tips,help,software,streaming |
-| Support URL | [PUBLISH SUPPORT PAGE] |
-| Privacy policy URL | [PUBLISH COMPLETED PRIVACY PAGE] |
-| Copyright | [YEAR AND ACTUAL RIGHTS HOLDER] |
+| Support URL | https://loop-tech-support.flyopal.chatgpt.site/support/ |
+| Privacy policy URL | https://loop-tech-support.flyopal.chatgpt.site/privacy/ |
+| Copyright | 2026 OPAL International Ltd |
 
 ## Promotional text
 
@@ -33,21 +33,22 @@ The current local subscription price and renewal terms appear before purchase. S
 
 Loop is an independent service. Product names and trademarks identify compatible technology and belong to their respective owners; their use does not imply endorsement or affiliation.
 
-Privacy: [PUBLISHED PRIVACY URL]
-Terms: [PUBLISHED TERMS URL]
-Support: [PUBLISHED SUPPORT URL]
+Privacy: https://loop-tech-support.flyopal.chatgpt.site/privacy/
+Terms: https://loop-tech-support.flyopal.chatgpt.site/terms/
+Support: https://loop-tech-support.flyopal.chatgpt.site/support/
 
-## Review notes — replace placeholders before submission
+## Review notes — phone and final domain pending
 
-No app account or login is required. Open More options to access Full Access and the guide catalogue. Basic troubleshooting and saving devices are free. Full Access is sold through the annual StoreKit product `com.littlesteps.techhelp.fullaccess.annual`.
+No app account or login is required. Basic troubleshooting and saving devices in My Tech are free. Open More options, then Full Access to view the annual subscription and advanced guide coverage. Product ID: com.littlesteps.techhelp.fullaccess.annual.
 
-Internal pricing reference: **US$49.99 per year**. Confirm this price in App Store Connect and validate the actual localized StoreKit price before release. Public listing copy uses localized pricing wording rather than a fixed dollar amount. The internal product identifier is retained through the branding change; it is not the customer-facing plan name.
+The interface, illustrations and guides are bundled. My Tech, language preferences and troubleshooting progress are stored locally. Manufacturer support links open externally. The app does not scan or control other devices; typed search suggests catalogue entries and is not a live AI diagnosis. Core navigation supports 40 languages; troubleshooting guides are in English.
 
-The app bundles its interface, illustrations and guides. My Tech, language preferences and troubleshooting progress are stored locally. Manufacturer links open externally; the app does not control or scan the user's other devices. The search suggests catalogue entries from typed text and does not provide a live AI diagnosis.
+Full Access uses native StoreKit for purchase, restoration and subscription management. The final price is localized by the App Store. Privacy and Terms are available in the app and on the support website.
 
-Review contact: [NAME, EMAIL AND TELEPHONE]
-Tested build: [VERSION / BUILD / TEST DATE]
-Purchase test notes: [ACTUAL SANDBOX RESULTS]
+Review contact: Daniel Vernon, request@flyopal.com. Phone: pending from the user.
+Uploaded candidate: 1.0.0 (102), 20 September 2026. Native local StoreKit tests passed; physical-device/TestFlight Sandbox results are not yet established.
+Marketing URL: https://loop-tech-support.flyopal.chatgpt.site/
+Final domain: pending from the user. Replace all listing URLs after that domain and the support/privacy/terms pages are verified live.
 
 ## Internal coverage baseline
 
