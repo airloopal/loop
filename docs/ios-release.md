@@ -1,6 +1,6 @@
 # iOS release setup
 
-Unsigned simulator compilation and native tests passed in Codemagic on 20 September 2026. See [the validation record](validation.md) for the tested commit and build. Signing, physical-device validation and Apple approval remain pending.
+Unsigned simulator compilation and native tests passed in Codemagic on 20 September 2026. See [the validation record](validation.md) for the tested commit and build. The approved icon and published support/legal settings are installed in signed build 102, successfully uploaded to App Store Connect. Physical-device validation, final review information and Apple approval remain pending.
 
 ## Repository and Codemagic
 
@@ -21,7 +21,7 @@ For **ios-testflight**, confirm the configured values and complete the remaining
 
 The [Loop: Tech Support App Store Connect record](https://appstoreconnect.apple.com/apps/6814186180/distribution) is created with primary language **English (U.S.)**, SKU `loop-tech-support-ios`, and bundle ID `com.littlesteps.techhelp`. Access is limited to the owner, Dan Vernon, with the existing Admin role.
 
-Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. Apple generated the **Loop App Store** provisioning profile for `A35TN6NA76.com.littlesteps.techhelp`, also expiring **19 September 2027**. It is imported into Codemagic as `loop_app_store`, where the matching uploaded certificate is confirmed. These configuration checks do not establish that a signed build or upload has succeeded. App listing/review details, the operating entity, support contact, and published privacy/terms URLs still require completion.
+Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. Apple generated the **Loop App Store** provisioning profile for `A35TN6NA76.com.littlesteps.techhelp`, also expiring **19 September 2027**. It is imported into Codemagic as `loop_app_store`, where the matching uploaded certificate is confirmed. Signed build 102 has now passed archive and upload, as recorded below. The operator is OPAL International Ltd and the published support/legal URLs are configured. The user is supplying the review phone number and final domain.
 
 The signed workflow performs `--distribution` checks, increments the build version, applies profiles, archives, and uploads to App Store Connect. It does not automatically submit to beta review or App Store review. After Apple processes the build, assign internal TestFlight testers in App Store Connect. Do not select that workflow until the first unsigned build and configuration checks have passed.
 
@@ -42,7 +42,7 @@ The **Full Access** subscription group (ID `22399472`) and its [annual auto-rene
 | English (U.S.) group localization | Full Access, using the app name Loop: Tech Support |
 | Included content | The available advanced troubleshooting guides for supported devices/apps; basic checks and My Tech stay free. |
 
-The saved plan charges annually upfront; monthly payments with a 12-month commitment have not been configured. Add the subscription review screenshot and remaining app/review information, and confirm the applicable paid-app agreements, tax and banking details. The saved price, availability and localization do not establish Apple approval or customer availability. Keep `purchasesEnabled` false until the product and native flow are ready for testing; enable it for the configured Sandbox/TestFlight build. Product price must come from StoreKit, and unavailable product data must leave the purchase button unavailable. The local `.storekit` file is only for simulated transactions.
+The saved plan charges annually upfront; monthly payments with a 12-month commitment have not been configured. The subscription review screenshot and notes are saved. Complete the remaining app/review information and applicable paid-app agreements, tax and banking details. The saved price, availability and localization do not establish Apple approval or customer availability. `purchasesEnabled` is now true for the configured TestFlight candidate. Product price must come from StoreKit, and unavailable product data must leave the purchase button unavailable. The local `.storekit` file is only for simulated transactions.
 
 For local Xcode tests using the `LittleSteps-StoreKit` scheme, set `app/app-config.json` → `purchasesEnabled: true` and rebuild the web bundle first. Both the web and native layers must allow the test transaction. Use that scheme only for local simulation; the `LittleSteps` release scheme has no StoreKit configuration file attached.
 
@@ -65,3 +65,21 @@ The source uses an app interface with bundled content and native purchase/share 
 - [Apple subscription guidance](https://developer.apple.com/app-store/subscriptions/) — product setup, pricing and subscription presentation.
 - [Apple App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) — digital purchases, clear subscription scope, in-app privacy links and meaningful app functionality.
 - [Apple App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/) — complete disclosures from the final app's actual data handling.
+
+## Signed candidate preparation — 20 September 2026
+
+The app now uses the approved 1024 × 1024 opaque Loop icon, OPAL International Ltd as operator, request@flyopal.com for support, and the published privacy/terms pages at https://loop-tech-support.flyopal.chatgpt.site. Purchases are enabled for the configured annual product. Distribution preflight and all existing JavaScript runtime/consumer checks pass.
+
+The signed workflow now runs the isolated Loop-StoreKitValidation scheme before archive. It exercises native StoreKit product loading, purchase, entitlement restoration through a new store instance, refund and expiration using Apple’s local test environment. This does not establish physical-device or TestFlight Sandbox purchase results. [Signed build #2](https://codemagic.io/app/6aafdf04d83de4e2e8943b2e/build/6ab029e6336d80bcce93430f) completed successfully for commit `64e4505d386d9c09e00461f2574acedf4b5430b5`, producing version **1.0.0 (102)**. All three native StoreKit tests passed with zero failures. Apple returned **UPLOAD SUCCEEDED with no errors** at 18:50 UTC. Delivery UUID: `06be58c6-fe0a-449c-a44e-a17483705e00`. App Store Connect subsequently showed build 102 as Processing.
+
+The release workflow pins Xcode 26.2 because the previous default iOS 26.5 simulator failed to configure StoreKitTest (SKInternalErrorDomain Code 3). The same tests passed on iOS 26.2 without changing purchase code. See [Apple's discussion](https://developer.apple.com/forums/thread/826364) and [Codemagic's installed runtimes](https://docs.codemagic.io/specs-macos/xcode-26-2/).
+
+### Review preparation status
+
+- Saved: free download price, availability in all 175 selectable regions, age rating 4+, and five correctly sized screenshots each for iPhone and iPad, ordered 01–05.
+- Saved: Full Access annual subscription pricing, localization, review screenshot and review notes.
+- Prepared in the version form: support/marketing URLs, copyright, reviewer name/email and detailed review notes. Apple blocks saving the form until the missing review phone number is provided. The final domain is also pending from the user.
+- Draft saved, not published: Data Not Collected privacy answers. Publishing requires the owner to confirm Apple's accuracy/compliance declaration.
+- Pending owner confirmation: rights or legally permitted use for third-party brand assets/content.
+- Apple Business blockers: Paid Apps Agreement is Pending User Info, with bank and US tax information missing; EU Digital Services Act trader information is incomplete. The owner must complete those account details.
+- Not submitted for App Review. Attach the processed build and first subscription once the remaining fields/declarations are complete.
