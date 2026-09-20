@@ -12,30 +12,37 @@ For **ios-testflight**, confirm the configured values and complete the remaining
 
 | Location | Required value |
 |---|---|
-| `app/app-config.json` → `bundleID` | Proposed `com.littlesteps.techhelp`; confirm it is available in your Apple team. |
+| `app/app-config.json` → `bundleID` | Registered explicit App ID `com.littlesteps.techhelp`, with the Apple Developer description `Loop Tech Support`. |
 | `ios/project.yml` and `codemagic.yaml` | The same bundle identifier. |
 | Codemagic `integrations.app_store_connect` | Configured as `One More Floor`; the existing integration was verified by successfully fetching Apple provisioning profiles through Codemagic. |
-| Codemagic `APP_STORE_APPLE_ID` | Numeric Apple ID of the new Loop App Store Connect record. |
-| Codemagic signing identities | Existing `one_more_floor_distribution` certificate verified; a matching Loop App Store provisioning profile is still required. |
+| Codemagic `APP_STORE_APPLE_ID` | Configured as `6814186180`, the verified Loop App Store Connect app ID. |
+| Codemagic signing identities | Verified certificate `one_more_floor_distribution` and matching imported profile `loop_app_store` (`Loop App Store`). |
 | `LS_BUILD_OFFSET` | A value making the next CI build number greater than all previous Loop uploads. |
 
-Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. The fetched Apple profiles did not include a profile for Loop's proposed `com.littlesteps.techhelp` bundle ID. A One More Floor provisioning profile cannot sign Loop; create or fetch a matching App Store profile before attempting the signed workflow. The Loop App Store Connect record and numeric app ID, annual subscription product, operating entity, support contact, and published privacy/terms URLs still require setup.
+The [Loop: Tech Support App Store Connect record](https://appstoreconnect.apple.com/apps/6814186180/distribution) is created with primary language **English (U.S.)**, SKU `loop-tech-support-ios`, and bundle ID `com.littlesteps.techhelp`. Access is limited to the owner, Dan Vernon, with the existing Admin role.
+
+Codemagic confirms the existing distribution certificate `one_more_floor_distribution` for team **Daniel Vernon**, expiring **19 September 2027**. Apple generated the **Loop App Store** provisioning profile for `A35TN6NA76.com.littlesteps.techhelp`, also expiring **19 September 2027**. It is imported into Codemagic as `loop_app_store`, where the matching uploaded certificate is confirmed. These configuration checks do not establish that a signed build or upload has succeeded. App listing/review details, the operating entity, support contact, and published privacy/terms URLs still require completion.
 
 The signed workflow performs `--distribution` checks, increments the build version, applies profiles, archives, and uploads to App Store Connect. It does not automatically submit to beta review or App Store review. After Apple processes the build, assign internal TestFlight testers in App Store Connect. Do not select that workflow until the first unsigned build and configuration checks have passed.
 
 ## Full Access subscription
 
-Create one auto-renewable subscription in the Loop app's subscription group:
+The **Full Access** subscription group (ID `22399472`) and its [annual auto-renewable subscription](https://appstoreconnect.apple.com/apps/6814186180/distribution/subscriptions/6814187206) have been created in App Store Connect. The product remains in **Prepare for Submission** and has not been submitted for review.
 
 | Field | Value |
 |---|---|
-| Reference/display name | Full Access |
+| Reference name | Full Access Annual |
+| Customer-facing plan name | Full Access |
+| Apple subscription ID | `6814187206` |
 | Product ID | `com.littlesteps.techhelp.fullaccess.annual` |
 | Duration | 1 year |
-| Intended US price | $49.99 per year |
+| Saved US starting price | USD $49.99 per year, verified in the subscription pricing table |
+| Annual payment availability | All 175 currently selectable countries or regions |
+| English (U.S.) product localization | Full Access — Advanced guides for supported devices and apps. |
+| English (U.S.) group localization | Full Access, using the app name Loop: Tech Support |
 | Included content | The available advanced troubleshooting guides for supported devices/apps; basic checks and My Tech stay free. |
 
-Set up that product, territories, localization and review material in App Store Connect, and complete the applicable paid-app agreements, tax and banking details there. A local `.storekit` file does not create the live product. Keep `purchasesEnabled` false until the product and native flow are ready for testing; enable it for the configured Sandbox/TestFlight build. Product price must come from StoreKit, and unavailable product data must leave the purchase button unavailable.
+The saved plan charges annually upfront; monthly payments with a 12-month commitment have not been configured. Add the subscription review screenshot and remaining app/review information, and confirm the applicable paid-app agreements, tax and banking details. The saved price, availability and localization do not establish Apple approval or customer availability. Keep `purchasesEnabled` false until the product and native flow are ready for testing; enable it for the configured Sandbox/TestFlight build. Product price must come from StoreKit, and unavailable product data must leave the purchase button unavailable. The local `.storekit` file is only for simulated transactions.
 
 For local Xcode tests using the `LittleSteps-StoreKit` scheme, set `app/app-config.json` → `purchasesEnabled: true` and rebuild the web bundle first. Both the web and native layers must allow the test transaction. Use that scheme only for local simulation; the `LittleSteps` release scheme has no StoreKit configuration file attached.
 
