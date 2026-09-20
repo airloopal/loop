@@ -14,6 +14,16 @@ final class LoopMediaCaptureUITests: XCTestCase {
         XCTAssertTrue(web.waitForExistence(timeout: 30), "The bundled app must finish loading.")
     }
 
+    override func record(_ issue: XCTIssue) {
+        let hierarchy = app.debugDescription
+        print("LOOP MEDIA FAILURE ACCESSIBILITY HIERARCHY\n\(hierarchy)")
+        let attachment = XCTAttachment(string: hierarchy)
+        attachment.name = "loop-media-failure-accessibility"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        super.record(issue)
+    }
+
     func testCaptureRealAppScreens() throws {
         // capture-app-media.py uninstalls only this app on the selected CI simulator first.
         try capture("01-welcome", heading: "Tech support, one tap at a time.")
@@ -59,6 +69,10 @@ final class LoopMediaCaptureUITests: XCTestCase {
 
     private func tap(_ label: String, prefix: Bool = false) throws {
         let target = element(named: label, prefix: prefix)
+        try tapElement(target, label: label)
+    }
+
+    private func tapElement(_ target: XCUIElement, label: String) throws {
         XCTAssertTrue(target.waitForExistence(timeout: 15), "Missing visible control: \(label)")
         for _ in 0..<8 where !target.isHittable { web.swipeUp() }
         // A previous long panel may have left us below a header control.
@@ -68,9 +82,22 @@ final class LoopMediaCaptureUITests: XCTestCase {
     }
 
     private func chooseModel(_ label: String) throws {
+        // WebKit can flatten the main label and the separate coverage badge into
+        // one button label: "iPhone 16 Full Access" (sometimes without a separator).
+        // Accept only the exact model followed by its known metadata; a broad
+        // beginsWith match would also incorrectly select iPhone 16 Pro or Plus.
+        let escaped = NSRegularExpression.escapedPattern(for: label)
+        let pattern = "^" + escaped + "(?:[\\s,·]*Full Access)?(?:[\\s,·]*New · [0-9]{4})?$"
         for _ in 0..<6 {
-            if element(named: label).exists {
-                try tap(label)
+            let model = web.buttons.matching(NSPredicate(format: "label MATCHES %@", pattern)).firstMatch
+            if model.exists {
+                print("Selecting exact model control: \(model.label)")
+                try tapElement(model, label: label)
+                return
+            }
+            let exactText = web.staticTexts.matching(NSPredicate(format: "label == %@", label)).firstMatch
+            if exactText.exists {
+                try tapElement(exactText, label: label)
                 return
             }
             let more = element(named: "Load More models and products")
