@@ -1,6 +1,6 @@
 # iOS release setup
 
-Signed version **1.0.0 (103)**, including the approved Loop icon and final-domain legal URLs at looptech.app, has successfully uploaded to App Store Connect. All three native local StoreKit tests passed with zero failures. Apple completed processing and marked build 103 Ready to Submit. Build 103 has replaced build 102 as the selected, saved build on iOS version 1.0; it has not been submitted for App Review. Physical-device/TestFlight Sandbox validation, business verification, remaining review requirements and Apple approval remain pending. Historical validation and upload records appear below and in [the validation record](validation.md).
+Loop iOS version **1.0**, using signed build **1.0.0 (103)**, was submitted for App Review on **21 September 2026** with **Full Access Annual** and the **Full Access subscription group**. All three items are **Waiting for Review** in the [same submission](https://appstoreconnect.apple.com/apps/6814186180/distribution/reviewsubmissions/details/e35fdbbf-0831-4f14-8175-03db35cf246c). Build 103 includes the approved Loop icon and final-domain legal URLs at looptech.app. All three native local StoreKit tests passed with zero failures; physical-device/TestFlight Sandbox validation results are not established. Apple approval is pending; business verification was last checked on 20 September and was not rechecked during submission. Historical validation and upload records appear below and in [the validation record](validation.md).
 
 ## Repository and Codemagic
 
@@ -27,7 +27,7 @@ The signed workflow performs `--distribution` checks, increments the build versi
 
 ## Full Access subscription
 
-The **Full Access** subscription group (ID `22399472`) and its [annual auto-renewable subscription](https://appstoreconnect.apple.com/apps/6814186180/distribution/subscriptions/6814187206) have been created in App Store Connect. The product is **Ready for Review**, added to the draft submission. It has not been sent to Apple for review.
+The **Full Access** subscription group (ID `22399472`) and its [annual auto-renewable subscription](https://appstoreconnect.apple.com/apps/6814186180/distribution/subscriptions/6814187206) were submitted for App Review on **21 September 2026**, together with iOS version 1.0, build 103. The group and product are **Waiting for Review**. [View the three-item submission](https://appstoreconnect.apple.com/apps/6814186180/distribution/reviewsubmissions/details/e35fdbbf-0831-4f14-8175-03db35cf246c).
 
 | Field | Value |
 |---|---|
@@ -82,14 +82,14 @@ Website version 4 is published. Both looptech.app and www.looptech.app have acti
 
 Both final-domain legal pages returned HTTPS 200 with the expected Loop/OPAL content using the release-preflight request configuration. The offline build, unsigned preflight, unchanged distribution preflight, runtime checks and all 11 consumer checks passed for the final-domain source configuration.
 
-[Signed build #3](https://codemagic.io/app/6aafdf04d83de4e2e8943b2e/build/6ab03a637623b5e95f995ad6) completed successfully for commit `f9fd0728cc737dbd96a1ed3ee04f8df2a6872a90`, producing version **1.0.0 (103)** with the final-domain legal URLs. All three native local StoreKit tests passed with zero failures: purchase and entitlement after store recreation, expiration, and refund. Apple returned **UPLOAD SUCCEEDED with no errors**. Delivery UUID: `359027a3-b9d7-4b16-b536-8e0c63bfb492`. App Store Connect completed processing and marked build 103 Ready to Submit. Build 102 was removed from the version attachment, and build 103 was selected and saved on iOS version 1.0. The build 103 row was present with Save disabled, confirming the saved state. It has not been submitted for App Review. These local tests do not establish physical-device or TestFlight Sandbox purchase results.
+[Signed build #3](https://codemagic.io/app/6aafdf04d83de4e2e8943b2e/build/6ab03a637623b5e95f995ad6) completed successfully for commit `f9fd0728cc737dbd96a1ed3ee04f8df2a6872a90`, producing version **1.0.0 (103)** with the final-domain legal URLs. All three native local StoreKit tests passed with zero failures: purchase and entitlement after store recreation, expiration, and refund. Apple returned **UPLOAD SUCCEEDED with no errors**. Delivery UUID: `359027a3-b9d7-4b16-b536-8e0c63bfb492`. App Store Connect completed processing and marked build 103 Ready to Submit. Build 102 was removed from the version attachment, and build 103 was selected and saved on iOS version 1.0. The build 103 row was present with Save disabled, confirming the saved state. This build was subsequently submitted for App Review on 21 September 2026. These local tests do not establish physical-device or TestFlight Sandbox purchase results.
 
-### Review preparation status
+### App Review submission — 21 September 2026
 
 - Saved: free download price, availability in all 175 selectable regions, age rating 4+, and five correctly sized screenshots each for iPhone and iPad, ordered 01–05.
-- Saved: Full Access annual subscription pricing, localization, review screenshot and review notes. The subscription is added to the draft review submission (Ready for Review).
+- Submitted together: iOS version 1.0 with build 103, Full Access Annual, and the Full Access subscription group (`22399472`). Adding the existing group resolved the missing-group submission requirement.
+- Confirmed: Apple displayed **3 Items Submitted**; a fresh submission-details page showed all three items **Waiting for Review**, and Draft Submissions showed **0**. The page recorded submission by Dan Vernon on 21 September at 1:41 AM, as displayed in App Store Connect. [Submission details](https://appstoreconnect.apple.com/apps/6814186180/distribution/reviewsubmissions/details/e35fdbbf-0831-4f14-8175-03db35cf246c). Apple approval and customer availability are still pending.
+- Saved: Full Access annual subscription pricing, localization, review screenshot and review notes.
 - Saved: description, support URL, marketing URL and Privacy Policy URL updated to the final domain, looptech.app; the Privacy Policy URL was verified on a fresh page. The review contact includes the supplied telephone +442034323492. Keywords and copyright remain saved.
-- Draft saved, not published: Data Not Collected privacy answers. Publishing requires the owner to confirm Apple's accuracy/compliance declaration.
-- Pending owner confirmation: rights or legally permitted use for third-party brand assets/content.
-- Apple Business status verified on a fresh page: business information is being verified; the bank-account banner asks to add a bank account; the Paid Apps Agreement is Pending User Info. Both US tax forms and Digital Services Act information are Active.
-- Not submitted for App Review. Published App Privacy answers and Content Rights Information remain required; the review contact is saved. Build 103 is processed, attached and saved on iOS version 1.0. Add the app version to the existing draft submission with the first subscription once the remaining requirements are complete.
+- The user completed the previous App Privacy and Content Rights requirements before the 21 September session; the app was already Ready for Review. The agent did not accept these declarations during this session or audit the user's answers.
+- Apple Business status was last checked on **20 September 2026**: business information was being verified; the bank-account banner asked to add a bank account; the Paid Apps Agreement was Pending User Info. Both US tax forms and Digital Services Act information were Active. This business status was not rechecked during the 21 September submission.
