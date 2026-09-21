@@ -1,8 +1,8 @@
-# App Store listing — draft
+# App Store listing — submitted for review
 
-Proposed metadata only; this is not a published App Store listing. Complete only after device validation. Names and availability must be checked in App Store Connect.
+Loop iOS version 1.0, build 103, was submitted for App Review on 21 September 2026 with Full Access Annual and its subscription group. Apple approval is pending; this is not a published App Store listing. Physical-device and TestFlight Sandbox validation results are not yet established.
 
-| Field | Draft |
+| Field | Listing metadata |
 |---|---|
 | App name | Loop: Tech Support (18/30 characters) |
 | Subtitle | Simple device troubleshooting (29/30 characters) |
@@ -48,12 +48,12 @@ The interface, illustrations and guides are bundled. My Tech, language preferenc
 Full Access uses native StoreKit for purchase, restoration and subscription management. The final price is localized by the App Store. Privacy and Terms are available in the app and on the support website.
 
 Review contact: Daniel Vernon, request@flyopal.com, +442034323492.
-Uploaded candidate: 1.0.0 (103), 20 September 2026. Apple completed processing and marked the build Ready to Submit. Build 103 is selected and saved on iOS version 1.0; it has not been submitted for App Review. All three native local StoreKit tests passed with zero failures; physical-device/TestFlight Sandbox results are not yet established.
+Submitted candidate: 1.0.0 (103), uploaded 20 September 2026 and submitted with iOS version 1.0 on 21 September 2026. The same submission includes Full Access Annual and its Full Access subscription group (`22399472`). Apple confirmed **3 Items Submitted**; a fresh submission-details page showed all three items **Waiting for Review**, with no draft submissions remaining. App Store Connect recorded submission by Dan Vernon on 21 September at 1:41 AM. [Submission details](https://appstoreconnect.apple.com/apps/6814186180/distribution/reviewsubmissions/details/e35fdbbf-0831-4f14-8175-03db35cf246c). All three native local StoreKit tests passed with zero failures; physical-device/TestFlight Sandbox results are not yet established.
 Marketing URL: https://looptech.app/
 
-Internal release note: the final domain and review telephone above were supplied by the user. The App Store version description, support and marketing URLs are saved with the final domain; the Privacy Policy URL was saved and verified on a fresh App Store Connect page, and the review contact including telephone is saved. Build 103 now bundles https://looptech.app/privacy/ and https://looptech.app/terms/. Both legal pages returned HTTPS 200 with the expected Loop/OPAL content, and unchanged distribution preflight passed on 20 September 2026. Build 103 has replaced build 102 as the selected, saved build on iOS version 1.0. App Privacy answers are still a draft and content-rights confirmation remains pending.
+Internal release note: the final domain and review telephone above were supplied by the user. The App Store version description, support and marketing URLs are saved with the final domain; the Privacy Policy URL was saved and verified on a fresh App Store Connect page, and the review contact including telephone is saved. Build 103 now bundles https://looptech.app/privacy/ and https://looptech.app/terms/. Both legal pages returned HTTPS 200 with the expected Loop/OPAL content, and unchanged distribution preflight passed on 20 September 2026. Build 103 replaced build 102 as the selected, saved build on iOS version 1.0. The user completed the previous App Privacy and Content Rights requirements before the 21 September session; the app was already Ready for Review. The agent did not accept those declarations during that session or audit the user's answers. Adding the existing subscription group to the same draft resolved the missing-group requirement, allowing all three items to be submitted together.
 
-Current Apple Business status, verified on a fresh page: business information is being verified, the bank-account banner asks to add a bank account, and the Paid Apps Agreement is Pending User Info. Both US tax forms and Digital Services Act information are Active.
+Apple Business status was last checked on **20 September 2026**: business information was being verified, the bank-account banner asked to add a bank account, and the Paid Apps Agreement was Pending User Info. Both US tax forms and Digital Services Act information were Active. This status was not rechecked during the 21 September submission.
 
 ## Internal coverage baseline
 
