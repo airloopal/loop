@@ -2,7 +2,8 @@
 // Controller integration checks in a deterministic DOM stub, not browser layout tests.
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
 const project=path.resolve(__dirname,'..');
-const html=fs.readFileSync(path.join(project,'app/fragment.html'),'utf8');
+const apple=process.argv.includes('--apple');
+const html=fs.readFileSync(path.join(project,apple?'app/apple-fragment.html':'app/fragment.html'),'utf8');
 const runtime=fs.readFileSync(path.join(project,'app/consumer-runtime.js'),'utf8');
 class Element{
  constructor(tag='div'){
@@ -59,7 +60,7 @@ async function test(name,fn){await fn();results.push(name);console.log('PASS',na
  });
  for(const native of [false,true])await test(`${native?'Native':'Browser'} My Tech and language survive reload; removal persists`,async()=>{
   const a=await ready({native});assert.equal(a.state().current,'welcome');await begin(a);
-  a.e['.ls-nav-tech'].click();a.e['.ls-add-device'].click();['Phones & tablets','Apple','iPhone 15','iOS'].forEach(a.wizard);
+  a.e['.ls-nav-tech'].click();a.e['.ls-add-device'].click();[apple?'iPhone & iPad':'Phones & tablets','Apple','iPhone 15','iOS'].forEach(a.wizard);
   const nickname='<img src=x onerror=alert(1)> My phone';a.e['#ls-device-nickname'].value=nickname;a.e['.ls-wizard-review'].handlers.submit({preventDefault(){}});await tick();
   assert.equal(a.state().profiles.length,1);assert.equal(a.state().profiles[0].nickname,nickname);assert.equal(savedData(a,native).savedProfiles[0].nickname,nickname);
   a.c.qa.locale('ar');await tick();assert.equal(savedData(a,native).language,'ar');
@@ -105,14 +106,29 @@ async function test(name,fn){await fn();results.push(name);console.log('PASS',na
   a.go('erase_data');a.click('Keep my data');assert.equal(a.state().profiles.length,1);a.go('erase_data');assert(a.e['.ls-guide-scope'].textContent.includes('subscription is not cancelled'));a.click('Erase my saved data');await tick();assert(a.calls.some(c=>c.action==='clearState'));assert.equal(a.state().current,'welcome');assert.equal(a.state().profiles.length,0);assert.equal(Object.keys(a.state().guideProgress).length,0);assert.equal(a.state().language,'en');assert.equal(a.state().hasFullAccess,true);
   const b=await ready({native:true,store:a.store,subscription:active()});assert.equal(b.state().current,'welcome');assert.equal(b.state().profiles.length,0);assert.equal(b.state().hasFullAccess,true);
  });
- await test('57 free guide graphs and 14 premium introductions remain available',async()=>{
-  const a=await ready({native:true,store:makeStorage(stateSeed())}),{free,advanced,catalog}=a.c.qa.data;assert.equal(free.length,57);assert.equal(advanced.length,14);
+ await test('Every included free guide graph and premium introduction remains available',async()=>{
+  const a=await ready({native:true,store:makeStorage(stateSeed())}),{free,advanced,catalog}=a.c.qa.data;assert.equal(free.length,apple?7:57);assert.equal(advanced.length,apple?2:14);
   const terminal=new Set(['@success','@support','@advanced']);
   for(const g of free){const ids=new Set(g.steps.map(s=>s.id));assert.equal(ids.size,g.steps.length,g.id);for(const s of g.steps){assert(s.body&&s.choices.length,g.id);for(const choice of s.choices)assert(terminal.has(choice.to)||ids.has(choice.to),`${g.id}/${s.id} broken branch`);}const reachable=new Set();function visit(id){if(reachable.has(id)||terminal.has(id))return;reachable.add(id);g.steps.find(s=>s.id===id).choices.forEach(c=>visit(c.to));}visit(g.steps[0].id);assert.equal(reachable.size,g.steps.length,g.id+' unreachable steps');
    let matched=null;for(const [category,brands] of Object.entries(catalog)){for(const brand of brands){for(const model of brand.models){if(model.availability==='coming-soon')continue;const variants=[];for(const software of model.software){if(software==='Windows')variants.push({software:'Windows 11'},{software:'Windows 10'});else if(category==='printer')variants.push(...['Windows 11','Windows 10','macOS'].map(x=>({software:x,printingApp:software,sourcePlatform:'desktop'})),{software:'Mobile print app',printingApp:software,sourcePlatform:'mobile'});else variants.push({software:software==='TV settings'&&brand.brand==='Samsung'?'Samsung Smart TV':software});}for(const variant of variants){const facts={category,brand:brand.brand,modelId:model.id,modelLabel:model.label,catalogComplete:true,...variant};a.c.qa.setFacts(facts);if(a.c.qa.freeMatch(g)){matched=facts;break;}}if(matched)break;}if(matched)break;}if(matched)break;}
    assert(matched,g.id+' has no matching catalogue profile');a.c.qa.setFacts(matched);a.go('basic_issues');a.click(g.title);assert.equal(a.state().current,'basic_step');assert.equal(a.heading(),g.steps[0].title);
   }
   for(const g of advanced){assert(g.scope&&g.sourceUrl.startsWith('https://')&&g.steps.length,g.id);a.go('guide_library');const card=a.e['.th-options'].children.find(b=>a.label(b).startsWith(g.title));assert(card,g.id+' missing from library');card.click();assert.equal(a.state().current,'advanced_intro');assert(a.e['.th-options'].children[0].textContent.includes('$49.99'));assert(!a.e['.th-detail'].textContent.includes(g.steps[0].body));}
+ });
+ if(apple)await test('Apple scope is consistent and legacy My Tech data survives saves and erasure',async()=>{
+  const seed=stateSeed();seed.savedProfiles=[{category:'mobile',brand:'Samsung',modelId:'galaxy-s24',modelLabel:'Galaxy S24',software:'Android',catalogComplete:true}];
+  seed.guideProgress['legacy-guide']={step:1,facts:{brand:'Samsung'}};
+  const a=await ready({native:true,store:makeStorage(seed)});
+  assert.equal(a.state().profiles.length,0);
+  const {catalog,free,advanced}=a.c.qa.data;
+  assert.equal(Object.keys(catalog).length,6);
+  for(const brands of Object.values(catalog))for(const b of brands){assert.equal(b.brand,'Apple');for(const m of b.models)assert(!/Android|Windows|ChromeOS/.test(m.software.join(' ')));}
+  for(const g of [...free,...advanced])assert(g.brands.includes('Apple'));
+  assert.equal(a.e['.th-options'].children.filter(x=>!x.classList.contains('ls-load-more')).length,6);
+  a.click('iPhone & iPad');assert.equal(a.state().facts.brand,'Apple');
+  a.c.qa.locale('fr');await tick();assert.equal(savedData(a,true).savedProfiles[0].brand,'Samsung');assert(savedData(a,true).guideProgress['legacy-guide']);
+  const b=await ready({native:true,store:a.store});assert.equal(b.state().profiles.length,0);b.c.qa.locale('en');
+  b.go('erase_data');b.click('Erase my saved data');await tick();assert.equal(savedData(b,true).savedProfiles.length,0);assert.equal(Object.keys(savedData(b,true).guideProgress).length,0);
  });
  console.log(`Consumer controller: ${results.length} checks passed. This validates logic and routes; iPhone layout, StoreKit sandbox and signing still require Xcode/device verification.`);
 })().catch(error=>{console.error(error.stack);process.exitCode=1;});
