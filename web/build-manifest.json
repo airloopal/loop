@@ -3,7 +3,7 @@
   "offlineBundle": true,
   "files": {
     "app.css": "9fca5815ac46599c6501455e654613066b95c0ca80946fd3947c042c76c86dbd",
-    "app.js": "d5e928cc48445a6931a310710b4f997f06ff870ac298d9928d5d1994b17035be",
+    "app.js": "e77d756d15704ae33b3f1cdccdfbf3265bf6b86ba6c177ff6476b0236b7708cf",
     "assets/app-icon.svg": "d5304735310eb16bfd5300edf3eb65333b2eb75b52e295d7d4508ebb0a453a66",
     "assets/fonts/inter-100-900-cyrillic-ext.woff2": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
     "assets/fonts/inter-100-900-cyrillic.woff2": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
@@ -22,7 +22,7 @@
     "assets/fonts/poppins-600-latin-ext.woff2": "72efc6a32cfd37c557108628cffa01153c480c3d4cde556744406e50b9d8e9f7",
     "assets/fonts/poppins-600-latin.woff2": "872e862918591a9e824dc03ed92f05729435ffbb8ebbb10eff7eda26592b1798",
     "config.js": "15260eaadd98133da056d7ea4c08a1397413f756cd851515db2c272110736a09",
-    "index.html": "31b70705cd92dd0173dba66c37415506e0b22a19ff3aac3b6a2e068d9dad8e0d",
+    "index.html": "6784d9c8f6ecdd6971b5f6b8e31e38880d731c25b7f1224944d8d765317eaaa8",
     "licenses/ATTRIBUTION.md": "80d807f9a5f06f77756576189dfd690f7bc8ed55e879047fd63594401ae1c762",
     "licenses/Inter-OFL.txt": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
     "licenses/Lucide-LICENSE.txt": "1e7290b35280a048667bbf0ebabac1c7fd52a75300e8b2946ac165715997f2bc",
