@@ -139,7 +139,10 @@ button,a {{ touch-action:manipulation; }}
 
 
 def build(web_only: bool = False) -> None:
-    fragment = required(APP / "fragment.html")
+    # The iOS release always uses the Apple edition, never a runtime review flag.
+    subprocess.run(["node", str(ROOT / "scripts" / "apple-profile.cjs"),
+                    str(APP / "fragment.html"), str(APP / "apple-fragment.html")], check=True)
+    fragment = required(APP / "apple-fragment.html")
     config = json.loads(required(APP / "app-config.json"))
     if not isinstance(config, dict):
         raise ValueError("app/app-config.json must contain a JSON object")
@@ -213,7 +216,7 @@ def build(web_only: bool = False) -> None:
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Security-Policy" content="{html.escape(csp, quote=True)}">
   <title>Loop Tech Support | Simple Device Troubleshooting</title>
-  <meta name="description" content="Get help with everyday tech. Loop guides you through simple checks for phones, TVs, computers, printers and apps. Save your devices in My Tech.">
+  <meta name="description" content="Guided troubleshooting for Apple devices and software. Follow simple checks and save your devices in My Tech.">
   <meta name="application-name" content="Loop">
   <meta name="apple-mobile-web-app-title" content="Loop">
   <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
