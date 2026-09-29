@@ -46,6 +46,7 @@ workflows:
           python3 scripts/release-preflight.py
           node tests/runtime.cjs
           node tests/consumer.cjs
+          node tests/consumer.cjs --apple
       - name: Generate the native project
         script: |
           set -eu
@@ -106,6 +107,7 @@ workflows:
           python3 scripts/release-preflight.py --distribution
           node tests/runtime.cjs
           node tests/consumer.cjs
+          node tests/consumer.cjs --apple
           python3 - <<'PY'
           import os
           app_id = os.environ.get('APP_STORE_APPLE_ID', '')
