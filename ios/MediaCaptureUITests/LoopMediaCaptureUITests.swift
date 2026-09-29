@@ -114,8 +114,15 @@ final class LoopMediaCaptureUITests: XCTestCase {
 
     private func capture(_ name: String, visibleElement: XCUIElement) throws {
         XCTAssertTrue(visibleElement.waitForExistence(timeout: 15), "Expected screen was not rendered: \(name)")
-        for _ in 0..<6 where !visibleElement.isHittable { web.swipeDown() }
-        XCTAssertTrue(visibleElement.isHittable, "The important screen content must be visible: \(name)")
+        // Static headings have no activation point in some iPhone WebKit builds.
+        // Visibility is geometry, not tappability; keep isHittable for actual taps.
+        func contentIsVisible() -> Bool {
+            let frame = visibleElement.frame
+            let viewport = web.frame.intersection(app.frame)
+            return !frame.isEmpty && !viewport.isEmpty && viewport.contains(frame)
+        }
+        for _ in 0..<6 where !contentIsVisible() { web.swipeDown() }
+        XCTAssertTrue(contentIsVisible(), "The important screen content must be visible: \(name)")
         // Allow the production entrance transitions, font rendering and image decode to settle.
         Thread.sleep(forTimeInterval: 1.5)
         XCTAssertFalse(app.staticTexts["Getting your guides ready…"].exists)
