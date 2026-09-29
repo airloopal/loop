@@ -30,7 +30,7 @@ final class LoopMediaCaptureUITests: XCTestCase {
         try tap("Let’s begin")
         try capture("02-home", heading: "Let’s get your tech working.")
 
-        try tap("Phones & tablets")
+        try tap("iPhone & iPad")
         try capture("03-phone-brands", heading: "Which brand do you use?")
         try tap("Apple")
         try capture("04-apple-models", heading: "Which model do you have?")
